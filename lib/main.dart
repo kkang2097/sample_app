@@ -7,12 +7,15 @@ void main() async {
   //Wait for environment variables to load
   await Env.init();
 
+  //Wait for login status to be confirmed
+
   //Load app
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //TODO: Add routes later!
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: globals.isLoggedIn ? Text('Hello'):LoginDemo(),
