@@ -9,13 +9,11 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage>{
-
   void _onItemTapped(int number) {
-    setState() {
+    setState(() {
       //TODO: figure out this state :(
       globals.currentScreen = number;
-    }
-    print(number);
+    });
   }
 
   Widget build(BuildContext context){
@@ -25,16 +23,16 @@ class MainPageState extends State<MainPage>{
     bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.newspaper),
+            label: 'Feed',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.auto_awesome),
+            label: 'Curated',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.auto_graph),
+            label: 'Rec Settings',
           ),
         ],
         currentIndex: globals.currentScreen,
