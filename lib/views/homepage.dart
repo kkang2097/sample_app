@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:sample_app/views/feed.dart';
 import 'package:sample_app/globals.dart' as globals;
 
 class MainPage extends StatefulWidget {
@@ -11,15 +12,33 @@ class MainPage extends StatefulWidget {
 class MainPageState extends State<MainPage>{
   void _onItemTapped(int number) {
     setState(() {
-      //TODO: figure out this state :(
       globals.currentScreen = number;
     });
   }
 
+  //Get conditional widget
+  Widget get_conditional_screen(int index){
+
+    //TODO: switch statement for widgets
+    switch(index){
+      case 0:
+        return Text('feeeeed');
+        break;
+      case 1:
+        return Text('curateddd');
+        break;
+      case 2:
+        return Text('Rec Settingssss');
+        break;
+    }
+    return Text('404, error lol');
+  }
+
   Widget build(BuildContext context){
   return Scaffold(
-    backgroundColor: Colors.grey,
-    body: Text("HELLO"),
+    backgroundColor: Colors.white,
+    //TODO: Change body conditionally, based on globals.currentScreen
+    body: get_conditional_screen(globals.currentScreen),
     bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
