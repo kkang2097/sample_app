@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sample_app/views/homepage.dart';
+import 'package:sample_app/services/login_service.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'dart:convert';
+import 'package:sample_app/globals.dart' as globals;
 
 class LoginDemo extends StatefulWidget {
   @override
@@ -8,7 +12,6 @@ class LoginDemo extends StatefulWidget {
 
 class _LoginDemoState extends State<LoginDemo> {
   String _id = '';
-  String _password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -45,40 +48,18 @@ class _LoginDemoState extends State<LoginDemo> {
                     }
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 15.0, right: 15.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                    hintText: 'Enter secure password'),
-                    onChanged: (value) => {
-                      _password = value
-                    }
-              ),
-            ),
-            TextButton(
-              onPressed: (){
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-              },
-              child: Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
-              ),
-            ),
             Container(
               height: 50,
               width: 250,
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {
+                onPressed: () async {
                   //TODO: If user exists, check auth info and log in if correct. If user does not exist, create user and log in.
-                    
+                  print("TYRING TO LOGG INE");
+                  final value = await get_user_check(dotenv.get('DB_API_URL', fallback:'NOT FOUND'), dotenv.get('DB_API_PW', fallback:'NOT FOUND'), _id);
+                  print(value);
+                  print(globals.isLoggedIn);
                   // Pushes route over.
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => MainPage()));

@@ -39,6 +39,9 @@ class MainPageState extends State<MainPage>{
     backgroundColor: Colors.white,
     //TODO: Change body conditionally, based on globals.currentScreen
     body: get_conditional_screen(globals.currentScreen),
+    appBar: AppBar(
+      
+    ),
     bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
