@@ -40,7 +40,8 @@ class MainPageState extends State<MainPage>{
     //TODO: Change body conditionally, based on globals.currentScreen
     body: get_conditional_screen(globals.currentScreen),
     appBar: AppBar(
-      
+      //TODO: find a decent theme :(
+      // backgroundColor: Grey();
     ),
     bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
