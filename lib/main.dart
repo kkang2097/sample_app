@@ -3,6 +3,8 @@ import 'package:sample_app/views/login.dart';
 import 'package:sample_app/views/homepage.dart';
 import 'package:sample_app/globals.dart' as globals;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:sample_app/providers/counter_provider.dart';
 
 void main() async {
   //Wait for environment variables to load
@@ -15,7 +17,16 @@ void main() async {
   //TODO: Provider for User
 
   //Load app
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => Counter()),
+      //We call providers this way in other files:
+      // context.watch<Counter>().count
+      // Or to call a method... context.read<Counter>().decrement()
+    ],
+    child: MyApp(),
+    ));
 }
 class MyApp extends StatelessWidget {
   @override
