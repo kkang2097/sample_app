@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/services/login_service.dart';
 
 
 class Feed extends StatefulWidget {
@@ -10,10 +11,12 @@ class Feed extends StatefulWidget {
 
 class _FeedState extends State<Feed> {
   //Add state helper functions
-  int incrementor = 0;
-  void state_temp(){
-    incrementor++;
-  }
+
+  //TODO: Load Provider context instead of raw HTTP request later
+  // @override
+  // initState(){
+  //   Future<Map<String, dynamic>> user_data = fake_getuser(url, username);
+  // }
 
   //Return value, a widget
   @override
