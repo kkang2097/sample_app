@@ -22,7 +22,7 @@ class MainPageState extends State<MainPage>{
     //TODO: switch statement for widgets
     switch(index){
       case 0:
-        return Text('feeeeed');
+        return Feed();
         break;
       case 1:
         return Text('curateddd');
