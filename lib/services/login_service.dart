@@ -13,7 +13,7 @@ bool verify_login(String id) {
   return true;
 }
 
-Future<Map<String, dynamic>> get_user_check<T>(String url, String db_api_pw, String username) async {
+Future<Map<String, dynamic>> get_user_check(String url, String username) async {
   print("STARTING HTTP REQUEST");
   print('$url/getuser?username=$username');
   //We should send HTTP requests without headers, using headers is a bad practice.
@@ -25,6 +25,15 @@ Future<Map<String, dynamic>> get_user_check<T>(String url, String db_api_pw, Str
   return body;
 
 }
+//Dummy function so we don't need to access the API all the time
+Future<Map<String, dynamic>> fake_getuser(String url, String username) async {
+  Future<Map<String, dynamic>> body = Future(() => {'_id': 'wa',
+   'subs': {'dummy_sub1': 'dummy_desc', 'dummy_sub2': 'dummy_desc'}, 
+   'feed': {'dummy_sub1': 'dummy_desc', 'dummy_sub2': 'dummy_desc'}, 
+   'curated': {'dummy_sub1': 'dummy_desc', 'dummy_sub2': 'dummy_desc'}});
+
+   return body;
+}
 
 
 
@@ -32,7 +41,7 @@ Future<Map<String, dynamic>> get_user_check<T>(String url, String db_api_pw, Str
 
 //Main function to test DB connection...
 Future<void> main(List<String> args) async {
-  var data = await get_user_check('http://localhost:8000', 'api_pw', 'user');
+  var data = await get_user_check('http://localhost:8000', 'user');
   print(data);
   print("Hello");
 }
