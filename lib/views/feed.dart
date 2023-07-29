@@ -19,7 +19,9 @@ class _FeedState extends State<Feed> {
   @override
   Widget build(BuildContext context) {
     //TODO: Need a ListView thing here...
-    return Text('Feeeed');
+    return ListView(
+      children: <Widget>[Text("1"), Text('2')],
+    );
   }
 
 }
