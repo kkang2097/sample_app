@@ -55,11 +55,9 @@ class _LoginDemoState extends State<LoginDemo> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () async {
-                  //TODO: If user exists, check auth info and log in if correct. If user does not exist, create user and log in.
-                  print("TYRING TO LOGG INE");
-                  final value = await get_user_check(dotenv.get('DB_API_URL', fallback:'NOT FOUND'), dotenv.get('DB_API_PW', fallback:'NOT FOUND'), _id);
+                  Map<String, dynamic> value = await get_user_check(dotenv.get('DB_API_URL', fallback:'NOT FOUND'), dotenv.get('DB_API_PW', fallback:'NOT FOUND'), _id);
                   print(value);
-                  print(globals.isLoggedIn);
+                  globals.isLoggedIn=true;
                   // Pushes route over.
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => MainPage()));
@@ -73,7 +71,7 @@ class _LoginDemoState extends State<LoginDemo> {
             SizedBox(
               height: 130,
             ),
-            Text('New User? Create Account')
+            Text('helicopter')
           ],
         ),
       ),
