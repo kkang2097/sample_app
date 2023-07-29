@@ -7,24 +7,22 @@ import 'dart:io';
 
 // import 'package:flutter/material.dart';
 
+//Dummy function here
 bool verify_login(String id) {
   //Make API call
   return true;
 }
 
-//TODO: We need to make this a POST request instead of a GET request
-Future<bool> get_user_check(String url, String db_api_pw, String username) async {
-  try{
-      print("STARTING HTTP REQUEST");
-      final res = await http.get(Uri.parse(url + '/getuser'),
-      headers: {'fake_auth': db_api_pw});
-      print("HTTP REQUEST FINISHED");
-      return new Future<bool>.value(true);
-  }
-  on HttpException catch (error) {
-    print('Error caught');
-    return new Future<bool>.value(false);
-  }
+Future<Map<String, dynamic>> get_user_check<T>(String url, String db_api_pw, String username) async {
+  print("STARTING HTTP REQUEST");
+  print('$url/getuser?username=$username');
+  final res = await http.get(Uri.parse('$url/getuser').replace(queryParameters: {'username': username}));
+
+  //Decode the response and put it as a Future, since this is an async function.
+  Future<Map<String, dynamic>> body = Future(() => jsonDecode(res.body));
+  
+  return body;
+
 }
 
 
